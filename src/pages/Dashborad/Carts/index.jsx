@@ -10,6 +10,32 @@ const top100Films = [
     { label: 'No' }];
 
 class Carts extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            FormData: {
+                id: 11,
+                userId: 5,
+                date: "2020-02-03",
+                products: [
+                    {
+                        productId: 5,
+                        quantity: 1
+                    },
+                    {
+                        productId: 1,
+                        quantity: 5
+                    }
+                ]
+            }
+        }
+    }
+
+
+
+
+
     render() {
         return (
             <>
@@ -25,7 +51,7 @@ class Carts extends Component {
 
                                     sx={{ width: 260 }}
                                     renderInput={(params) => <TextField
-                                        {...params} label="Need a driver or not?" />}
+                                        {...params} label="User Name" />}
                                 />
                             </Box>
 
@@ -37,7 +63,7 @@ class Carts extends Component {
 
                                     sx={{ width: 260 }}
                                     renderInput={(params) => <TextField
-                                        {...params} label="Need a driver or not?" />}
+                                        {...params} label="Product Title" />}
                                 />
                             </Box>
 
@@ -58,8 +84,13 @@ class Carts extends Component {
                             />
 
                             <Box component="form" noValidate autoComplete="off" style={{ position: 'relative', textAlign: 'center', top: '80px' }}>
-                                <TextField id="outlined-name" label="Address" style={{ width: '70%' }}
-
+                                <TextField id="outlined-name" label="Qty" style={{ width: '70%' }}
+                                    value={this.state.FormData.products.quantity}
+                                    onChange={(e) => {
+                                        let formData = this.state.FormData
+                                        formData.products.quantity = e.target.value
+                                        this.setState({ formData })
+                                    }}
                                 />
                             </Box>
 

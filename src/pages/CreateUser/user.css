@@ -60,3 +60,10 @@
     bottom: 50px;
     right: 280px;
 }
+
+.UserTable{
+    position: relative;
+    top: 20px;
+    width: 90%;
+    left: 100px;
+}

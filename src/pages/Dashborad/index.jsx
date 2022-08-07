@@ -117,11 +117,6 @@ export default function MiniDrawer() {
             to: 'products'
         },
         {
-            text: 'Users',
-            icon: <PeopleIcon />,
-            to: '/users',
-        },
-        {
             text: 'Carts',
             icon: <CategoryIcon />,
             to: '/carts',
