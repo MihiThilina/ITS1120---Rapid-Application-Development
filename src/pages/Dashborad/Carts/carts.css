@@ -16,18 +16,35 @@
     width: 80%;
     top: 140px;
     height: 80vh;
-    border: 1px solid red;
+    
 }
 
 
 .Section{
     width: 50vw;
     height: 70vh;
-    border: 1px solid red;
+   
 }
 
 .Section2{
     width: 50vw;
-    border: 1px solid red;
     height: 50vh;
+}
+
+.btnCartSave{
+    top: 280px;
+    position: absolute;
+    width: 10%;
+    height:40px;
+    bottom: 50px;
+    right: 100px;
+}
+
+.btnCartClear{
+    top: 280px;
+    position: absolute;
+    width: 10%;
+    height: 40px;
+    bottom: 50px;
+    right: 280px;
 }

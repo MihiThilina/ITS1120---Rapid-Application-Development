@@ -8,7 +8,7 @@
     position: absolute;
     top: 85px;
     left: 100px;
-    border: 1px solid red;
+
 }
 
 .productsManageSection{
@@ -17,17 +17,35 @@
     width: 80%;
     top: 140px;
     height: 80vh;
-    border: 1px solid red;
+
 }
 
 .ManageSection{
     width: 50vw;
     height: 70vh;
-    border: 1px solid red;
+
 }
 
 .ManageSection2{
     width: 50vw;
-    border: 1px solid red;
     height: 50vh;
+}
+
+
+.btnProductSave{
+    top: 250px;
+    position: absolute;
+    width: 10%;
+    height:40px;
+    bottom: 50px;
+    right: 100px;
+}
+
+.btnProductClear{
+    top: 250px;
+    position: absolute;
+    width: 10%;
+    height: 40px;
+    bottom: 50px;
+    right: 280px;
 }

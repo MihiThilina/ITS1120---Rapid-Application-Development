@@ -90,7 +90,7 @@ class CreateUser extends Component {
                 <main>
 
                     <section className='registration_section'>
-                        <h1 className='topic'>User Registration</h1>
+                        <h1 style={{textAlign:"center"}} className='topic'>User Registration</h1>
 
 
 

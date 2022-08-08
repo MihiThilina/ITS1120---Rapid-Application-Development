@@ -12,15 +12,17 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<DashBoard />}>
-           <Route index element={<Home />} />
+        <Route index element={<Login />} />
+        <Route path="/CreateUser" element={<CreateUser />} />
+        <Route exact path="/DashBoard" element={<DashBoard />}>
+          <Route path="Home" element={<Home />} />
           <Route path='products' element={<Products />} />
-          <Route path="carts" element={<Carts/>} />
+          <Route path="carts" element={<Carts />} />
         </Route>
-      </Routes>   
-       {/* <CreateUser /> */}
+      </Routes>
+      {/* <CreateUser /> */}
     </>
-   
+
   );
 }
 

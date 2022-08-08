@@ -17,7 +17,55 @@
     margin-right: auto;
     width: 50vw;
     height: 80vh;
-    border: 2px solid red;
+    
 }
 
+
+
+
+
+a {
+    text-decoration: none;
+  }
+
+
+
+
+
+.second-slider h1{
+    text-align: center;
+    position: relative;
+    top: 100px;
+}
+
+.vertical-center{
+    text-align: center; 
+    position: relative;
+    top: 230px;
+    left: 7px;
+}
+
+.vertical-center p{
+    position: relative;
+    top: 10px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.vertical-center a{
+    color:#6B951D;
+    font-weight: bold;
+    position: relative;
+    left: 4px;
+}
+
+.vertical-center button{
+    width: 30vw;
+    height: 6vh;
+    font-size: large;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    background-color: #D5FB91;
+}
 

@@ -4,6 +4,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import HomeIcon from '@mui/icons-material/Home';
 import MenuIcon from '@mui/icons-material/Menu';
 import PeopleIcon from '@mui/icons-material/People';
+import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import MuiAppBar from '@mui/material/AppBar';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -109,17 +110,17 @@ export default function MiniDrawer() {
         {
             icon: <HomeIcon />,
             text: 'Home',
-            to: '/'
+            to: "Home"
         },
         {
             text: 'Products',
-            icon: <HomeIcon />,
+            icon: <CategoryIcon />,
             to: 'products'
         },
         {
             text: 'Carts',
-            icon: <CategoryIcon />,
-            to: '/carts',
+            icon: <ProductionQuantityLimitsIcon />,
+            to: 'carts',
         }
     ]
 
@@ -165,11 +166,15 @@ export default function MiniDrawer() {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" noWrap component="div">
-                            Mini variant drawer
-                        </Typography>
+                            Dash Board
+                          </Typography>
                     </Box>
                     <Box sx={{ flexGrow: 0 }}>
-                        
+                    <Tooltip title="Open settings">
+                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                <Avatar alt="Remy Sharp" src="https://media-exp1.licdn.com/dms/image/C4D03AQFI3NGHwjy_hA/profile-displayphoto-shrink_800_800/0/1635346771654?e=1665619200&v=beta&t=aOX2fLyjSUlbTIGWf8oEdyhPgNHPVeoFiz7OBgjUY_Y" />
+                            </IconButton>
+                        </Tooltip>
                         <Menu
                             sx={{ mt: '45px' }}
                             id="menu-appbar"

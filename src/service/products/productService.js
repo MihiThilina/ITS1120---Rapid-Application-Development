@@ -29,6 +29,8 @@ class Products{
             })
             return await promise;
         }
+
+        
 }
 
 export default new Products();

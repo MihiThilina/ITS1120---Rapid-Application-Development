@@ -3,7 +3,7 @@ import './carts.css'
 import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
 import { TextField } from '@mui/material';
-
+import cartsService from '../../../service/carts/cartsService';
 
 const top100Films = [
     { label: 'Yes' },
@@ -15,9 +15,32 @@ class Carts extends Component {
         super(props)
         this.state = {
             FormData: {
+                id: '',
+                userId: '',
+                date: "",
+                products: [
+                    {
+                        productId: '',
+                        quantity: ''
+                    },
+                    {
+                        productId: '',
+                        quantity: ''
+                    }
+                ]
+            },
+            userIdData:[],
+
+        }
+    }
+
+
+    clearFields = () => {
+        this.setState({
+            FormData: {
                 id: 11,
                 userId: 5,
-                date: "2020-02-03",
+                date: "",
                 products: [
                     {
                         productId: 5,
@@ -29,8 +52,37 @@ class Carts extends Component {
                     }
                 ]
             }
+        })
+    }
+
+
+
+    submitCarts = async () => {
+        let data = this.state.FormData;
+        console.log(data);
+
+    };
+
+    getUserID = async () => {
+        let res = await cartsService.GetCarts();
+        let userId = [];
+        if (res.status === 200) {
+            res.data.map((value) => {
+                userId.push(value.userId)
+            })
+            this.setState({ userIdData: userId })
+
         }
     }
+
+
+    async componentDidMount() {
+        await this.getUserID();
+        console.log(this.state.userIdData)
+    }
+
+
+
 
 
 
@@ -47,11 +99,15 @@ class Carts extends Component {
                                 <Autocomplete
                                     style={{ width: '70%' }}
                                     id="combo-box-demo"
-                                    options={top100Films}
+                                    value={this.state.FormData.userId}
+                                    onChange={(event, newValue) => {
+                                        this.setState(Object.assign(this.state.FormData, { userId: newValue }));
+                                    }}
+                                    options={this.state.userIdData}
 
                                     sx={{ width: 260 }}
                                     renderInput={(params) => <TextField
-                                        {...params} label="User Name" />}
+                                        {...params} label="User Id" />}
                                 />
                             </Box>
 
@@ -77,7 +133,13 @@ class Carts extends Component {
                                 label="Date"
                                 type="date"
                                 defaultValue="LocalizationProvider"
-
+                                
+                                value={this.state.FormData.date}
+                                onChange={(e) => {
+                                    let formData = this.state.FormData
+                                    formData.date = e.target.value
+                                    this.setState({ formData })
+                                }}
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
@@ -96,8 +158,8 @@ class Carts extends Component {
 
                         </div>
                             
-                        <button className='btnSave'>Save</button>
-                        <button className='btnClear'>Clear</button>
+                        <button type='submit' onClick={this.submitCarts} className='btnCartSave'>Save</button>
+                        <button type='submit' onClick={this.clearFields} className='btnCartClear'>Clear</button>
 
                     </section>
                 </main>

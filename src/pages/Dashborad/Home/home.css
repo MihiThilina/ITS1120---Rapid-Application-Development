@@ -7,7 +7,6 @@
 
 .cardSection{
     display: flex;
-    margin: 10px;
-
-   
+    position: absolute;
+    left: 300px;
 }

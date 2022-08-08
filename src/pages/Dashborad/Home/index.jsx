@@ -9,35 +9,39 @@ class Home extends Component {
     render() {
         return (
             <>
+
+
+
                 <section>
                     <div className='cardSection'>
-                        <Card sx={{ maxWidth: 345 }} style={{ position: "relative", top: "120px",border:'1px solid red' }}>
+                        <Card  style={{ width:'300px', position: "relative", top: "120px",boxShadow:'rgba(0, 0, 0, 0.35) 0px 5px 15px' }}>
                             <CardActionArea>
                                 <CardContent>
 
                                 </CardContent>
-                                <h1>Our Customers Always 100% Satisfied</h1>
-
+                                <h1 style={{textAlign:'center',fontSize:'40px'}}>Products</h1><br />
+                                <h1 style={{textAlign:'center',position:'relative',top:'60px',fontSize:'40px'}}>15</h1>
                             </CardActionArea>
                         </Card>
 
-                        <Card sx={{ maxWidth: 345 }} style={{ position: "relative", top: "120px" ,border:'1px solid red'}}>
+                        <Card  style={{ width:'300px', height:"250px",position: "relative", top: "120px" ,left:'40px', boxShadow:'rgba(0, 0, 0, 0.35) 0px 5px 15px' }}>
                             <CardActionArea>
                                 <CardContent>
 
                                 </CardContent>
-                                <h1>We Provide Easier & Faster Bookings</h1>
-
+                                <h1 style={{textAlign:'center',fontSize:'40px'}}>Carts</h1><br />
+                                <h1 style={{textAlign:'center',position:'relative',top:'60px',fontSize:'40px'}}>15</h1>
                             </CardActionArea>
                         </Card>
 
 
-                        <Card sx={{ maxWidth: 345 }} style={{ position: "relative", top: "120px",border:'1px solid red'}}>
+                        <Card  style={{ width:'300px', position: "relative", top: "120px",left:'80px', boxShadow:'rgba(0, 0, 0, 0.35) 0px 5px 15px' }}>
                             <CardActionArea>
                                 <CardContent>
 
                                 </CardContent>
-                                <h1>Your Choice of Any Pickup Location</h1>
+                                <h1 style={{textAlign:'center',fontSize:'40px'}}>Users</h1><br />
+                                <h1 style={{textAlign:'center',position:'relative',top:'60px',fontSize:'40px'}}>15</h1>
 
                             </CardActionArea>
                         </Card>
