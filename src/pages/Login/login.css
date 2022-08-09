@@ -36,6 +36,7 @@ a {
     text-align: center;
     position: relative;
     top: 100px;
+   
 }
 
 .vertical-center{
@@ -43,6 +44,7 @@ a {
     position: relative;
     top: 230px;
     left: 7px;
+    
 }
 
 .vertical-center p{

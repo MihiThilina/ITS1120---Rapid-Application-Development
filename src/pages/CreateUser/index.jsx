@@ -1,5 +1,8 @@
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 import { TextField } from '@mui/material';
 import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,6 +10,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import Tooltip from '@mui/material/Tooltip';
 import React, { Component } from 'react';
 
 import userService from '../../service/user/User'
@@ -19,6 +23,7 @@ class CreateUser extends Component {
         super(props)
         this.state = {
             UserData: {
+                id:'',
                 email: "",
                 username: "",
                 password: "",
@@ -48,14 +53,44 @@ class CreateUser extends Component {
         let res = await userService.postUser(data);
     };
 
+    deleteUser  = async (id) => { 
+        let params = {
+            id: id
+        }
+         let res = await userService.deleteUser(params);
+    
+         if(res.status === 200) {
+            this.setState({
+                alert: true,
+              
+                severity: 'success'
+            });
+            this.loadData();
+         } else {
+            this.setState({
+                alert: true,
+              
+                severity: 'error'
+            });
+         }
+       }; 
+    
+
+
+
 
     loadData = async () => {
         let res = await userService.GetUser();
-        console.log("User " + res.data.data);
+        if(res.status === 200){
+            this.setState({
+            data :res.data
+           });
+         }
     }
 
     componentDidMount() {
         this.loadData();
+        console.log(this.loadData);
     }
 
     clearFields = () => {
@@ -238,35 +273,58 @@ class CreateUser extends Component {
                         <Table sx={{ minWidth: 800 }} aria-label="customized table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>Nic Number</TableCell>
+                                    <TableCell>First Name</TableCell>
+                                    <TableCell align="center">Last Name</TableCell>
+                                    <TableCell align="center">Email</TableCell>
+                                    <TableCell align="center">UserName</TableCell>
                                     <TableCell align="center">Password</TableCell>
-                                    <TableCell align="center">Name</TableCell>
-                                    <TableCell align="center">Address</TableCell>
-                                    <TableCell align="center">Contact</TableCell>
-                                    <TableCell align="center">Emali</TableCell>
-                                    <TableCell align="center">license Number</TableCell>
-                                    <TableCell align="center">Action</TableCell>
-
+                                    <TableCell align="center">City</TableCell>
+                                    <TableCell align="center">Street No</TableCell>
+                                    <TableCell align="center">Street</TableCell>
+                                    <TableCell align="center">Zip Code</TableCell>
+                                    <TableCell align="center">Lat Code</TableCell>
+                                    <TableCell align="center">Long Value</TableCell>
+                                    <TableCell align="center">Mobile No</TableCell>
+                                    <TableCell align="center">Acction</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {/* {
+                                {
                                     this.state.data.map((row) => (
 
                                         <TableRow>
-                                            <TableCell>{row.firstname}</TableCell>
-                                            <TableCell align="center">Password</TableCell>
-                                            <TableCell align="center">Name</TableCell>
-                                            <TableCell align="center">Address</TableCell>
-                                            <TableCell align="center">Contact</TableCell>
-                                            <TableCell align="center">Emali</TableCell>
-                                            <TableCell align="center">license Number</TableCell>
-                                            <TableCell align="center">Action</TableCell>
+                                        <TableCell>{row.name.firstname}</TableCell>
+                                    <TableCell align="center">{row.name.lastname}</TableCell>
+                                    <TableCell align="center">{row.email}</TableCell>
+                                    <TableCell align="center">{row.username}</TableCell>
+                                    <TableCell align="center">{row.password}</TableCell>
+                                    <TableCell align="center">{row.address.city}</TableCell>
+                                    <TableCell align="center">{row.address.number}</TableCell>
+                                    <TableCell align="center">{row.address.street}</TableCell>
+                                    <TableCell align="center">{row.address.zipcode}</TableCell>
+                                    <TableCell align="center">{row.address.geolocation.lat}</TableCell>
+                                    <TableCell align="center">{row.address.geolocation.long}</TableCell>
+                                    <TableCell align="center">{row.phone}</TableCell>
+                                    <TableCell align="center">
 
-                                        </TableRow>
+                                    <Tooltip title="Delete"><IconButton
+                                        onClick={() => {
+                                            this.deleteUser(row.id)
+                                        }}
+                                    ><DeleteIcon color="error" /></IconButton>
+                                    </Tooltip>
+                                    <Tooltip title="Edit"><IconButton
+                                        onClick={() => {
+                                            console.log("edit icon clicked!")
+                                            this.updateRentalRate(row);
+                                        }}
+                                    ><EditIcon color='primary'/></IconButton>
+                                    </Tooltip>
 
+                                    </TableCell>
+                                    </TableRow>
                                     ))
-                                } */}
+                                }
 
                             </TableBody>
                         </Table>

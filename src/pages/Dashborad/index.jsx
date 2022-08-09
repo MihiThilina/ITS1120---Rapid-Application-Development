@@ -125,10 +125,10 @@ export default function MiniDrawer() {
     ]
 
     // const settings = [
-        // {
-        //     text: 'Home',
-        //     to: '/'
-        // },
+    // {
+    //     text: 'Home',
+    //     to: '/'
+    // },
     //     {
     //         text: 'Settings',
     //         to: '/setting'
@@ -167,10 +167,10 @@ export default function MiniDrawer() {
                         </IconButton>
                         <Typography variant="h6" noWrap component="div">
                             Dash Board
-                          </Typography>
+                        </Typography>
                     </Box>
                     <Box sx={{ flexGrow: 0 }}>
-                    <Tooltip title="Open settings">
+                        <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                 <Avatar alt="Remy Sharp" src="https://media-exp1.licdn.com/dms/image/C4D03AQFI3NGHwjy_hA/profile-displayphoto-shrink_800_800/0/1635346771654?e=1665619200&v=beta&t=aOX2fLyjSUlbTIGWf8oEdyhPgNHPVeoFiz7OBgjUY_Y" />
                             </IconButton>
@@ -191,7 +191,7 @@ export default function MiniDrawer() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                           
+
                         </Menu>
                     </Box>
                 </Toolbar>
@@ -205,11 +205,11 @@ export default function MiniDrawer() {
                 <Divider />
                 <List>
                     {pages.map((page, index) => (
-                        <ListItem 
-                        component={Link} 
-                        to={page.to} 
-                        key={page.text}
-                        disablePadding sx={{ display: 'block' }}>
+                        <ListItem
+                            component={Link}
+                            to={page.to}
+                            key={page.text}
+                            disablePadding sx={{ display: 'block' }}>
                             <ListItemButton
                                 sx={{
                                     minHeight: 48,
@@ -233,7 +233,7 @@ export default function MiniDrawer() {
                 </List>
                 <Divider />
             </Drawer>
-            <Outlet/>
+            <Outlet />
         </Box>
     );
 }

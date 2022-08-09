@@ -31,6 +31,32 @@ class User{
         }
 
 
+        PutUser  = async (data) => {
+            const promise = new Promise((resolve, reject) => {
+               axios.put('users', data)
+               .then((res) => {
+                   return resolve(res)
+               })
+               .catch((err) => {
+                   return resolve(err)
+               })
+            })
+            return await promise;
+       };
+
+
+       deleteUser = async (params) => {
+        const promise = new Promise((resolve, reject) => {
+           axios.delete('users', {params: params})
+           .then((res) => {
+               return resolve(res)
+           }) 
+           .catch((err) => {
+               return resolve(err)
+           })
+        })
+        return await promise;
+   };
      
 
         

@@ -1,9 +1,13 @@
-import React, { Component } from 'react'
-import './carts.css'
+import { TextField } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
-import { TextField } from '@mui/material';
+import React, { Component } from 'react'
+
 import cartsService from '../../../service/carts/cartsService';
+import productService from '../../../service/products/productService';
+import User from  '../../../service/user/User';
+
+import './carts.css'
 
 const top100Films = [
     { label: 'Yes' },
@@ -14,6 +18,56 @@ class Carts extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            FormData: {
+                userId: '',
+                date: "",
+                products: [
+                    {
+                        productId: '',
+                        quantity: ''
+                    },
+                    {
+                        productId: '',
+                        quantity: ''
+                    }
+                ]
+            },
+            userNameData:[],
+            productTitle:[],
+            UserData: {
+                email: "",
+                username: "",
+                password: "",
+                name: {
+                    firstname: "",
+                    lastname: ""
+                },
+                address: {
+                    city: "",
+                    street: "",
+                    number: 3,
+                    zipcode: "",
+                    geolocation: {
+                        lat: "",
+                        long: ""
+                    }
+                },
+                phone: ""
+            },
+            productFormData: {
+                id: '',
+                title: "",
+                price: '',
+                description: "",
+                image: "",
+                category: ""
+            }
+        }
+    }
+
+
+    clearFields = () => {
+        this.setState({
             FormData: {
                 id: '',
                 userId: '',
@@ -28,64 +82,78 @@ class Carts extends Component {
                         quantity: ''
                     }
                 ]
-            },
-            userIdData:[],
-
-        }
-    }
-
-
-    clearFields = () => {
-        this.setState({
-            FormData: {
-                id: 11,
-                userId: 5,
-                date: "",
-                products: [
-                    {
-                        productId: 5,
-                        quantity: 1
-                    },
-                    {
-                        productId: 1,
-                        quantity: 5
-                    }
-                ]
             }
         })
     }
 
 
 
+    IdS = async () => {
+        let res = await User.GetUser();
+        let userids= [];
+        res.data.map((value) => {
+            userids.push(value.id)
+        })
+        this.setState({ userId: userids })
+        if (res.status === 200) {
+           
+        }
+    }
+
+    productIdS = async () => {
+        let res = await productService.GetRentalRates();
+        let productsids= [];
+        res.data.map((value) => {
+            productsids.push(value.id)
+        })
+        
+        this.setState({ id: productsids })
+        if (res.status === 200) {
+           
+        }
+    }
+
+
     submitCarts = async () => {
         let data = this.state.FormData;
         console.log(data);
-
+        let res = await cartsService.postCarts(data);
     };
 
-    getUserID = async () => {
-        let res = await cartsService.GetCarts();
-        let userId = [];
+    getUserName = async () => {
+        let res = await User.GetUser();
+        let userNames= [];
+        res.data.map((value) => {
+            userNames.push(value.username)
+        })
+        this.setState({ userNameData: userNames })
         if (res.status === 200) {
-            res.data.map((value) => {
-                userId.push(value.userId)
-            })
-            this.setState({ userIdData: userId })
+           
+        }
+    }
 
+    getproductTitle = async () => {
+        let res = await productService.GetRentalRates();
+        let productTitles= [];
+        res.data.map((value) => {
+            productTitles.push(value.title)
+        })
+        let unique =productTitles.filter((val,id,array) => array.indexOf(val) == id) 
+        this.setState({ productTitle: unique })
+        if (res.status === 200) {
+      
         }
     }
 
 
     async componentDidMount() {
-        await this.getUserID();
-        console.log(this.state.userIdData)
+        await this.getUserName();
+        await this.getproductTitle();
+        await this.IdS();
+        await this.productIdS();
+
+        console.log(this.productIdS);
     }
-
-
-
-
-
-
 
 
     render() {
@@ -99,11 +167,11 @@ class Carts extends Component {
                                 <Autocomplete
                                     style={{ width: '70%' }}
                                     id="combo-box-demo"
-                                    value={this.state.FormData.userId}
+                                    value={this.state.UserData.username}
                                     onChange={(event, newValue) => {
-                                        this.setState(Object.assign(this.state.FormData, { userId: newValue }));
+                                        this.setState(Object.assign(this.state.UserData, { username: newValue }));
                                     }}
-                                    options={this.state.userIdData}
+                                    options={this.state.userNameData}
 
                                     sx={{ width: 260 }}
                                     renderInput={(params) => <TextField
@@ -115,7 +183,12 @@ class Carts extends Component {
                                 <Autocomplete
                                     style={{ width: '70%' }}
                                     id="combo-box-demo"
-                                    options={top100Films}
+                                    value={this.state.productFormData.title}
+                                    onChange={(event, newValue) => {
+                                        this.setState(Object.assign(this.state.productFormData, { title: newValue }));
+                                    }}
+                                    options={this.state.productTitle}
+
 
                                     sx={{ width: 260 }}
                                     renderInput={(params) => <TextField

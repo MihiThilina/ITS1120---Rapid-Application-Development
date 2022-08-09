@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
-import './products.css'
-import TextareaAutosize from '@mui/material/TextareaAutosize';
+import { TextField } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
-import { TextField } from '@mui/material';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
+import React, { Component } from 'react';
+
 import productService from '../../../service/products/productService';
 
-const top100Films = [
-    { label: 'Yes' },
-    { label: 'No' }
-];
+
+import './products.css'
 
 class Products extends Component {
 
@@ -25,7 +23,8 @@ class Products extends Component {
                 image: "",
                 category: ""
             },
-            categoryData: []
+            categoryData: [],
+            
         }
 
     }
@@ -50,20 +49,13 @@ class Products extends Component {
         if (res.status === 200) {
             res.data.map((value) => {
                 tempCategory.push(value.category)
-
-            })
-            // const unique = Array.form(new Set(tempCategory))
-            console.log("sdfs",tempCategory);
+            })     
             let unique = tempCategory.filter((val,id,array) => array.indexOf(val) == id);
-            console.log(unique, "uniq");
             this.setState({ categoryData: unique })
-
         }
-
     }
 
  
-
     submitProducts = async () => {
         let data = this.state.FormData;
         console.log(data);
