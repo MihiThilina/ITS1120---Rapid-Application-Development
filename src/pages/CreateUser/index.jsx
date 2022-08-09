@@ -62,7 +62,7 @@ class CreateUser extends Component {
          if(res.status === 200) {
             this.setState({
                 alert: true,
-              
+        
                 severity: 'success'
             });
             this.loadData();
